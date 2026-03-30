@@ -83,7 +83,7 @@ class MonthMiniCard(QFrame):
         # Day-of-week headers
         dow_layout = QHBoxLayout()
         dow_layout.setSpacing(2)
-        for d in ["M", "T", "W", "T", "F", "S", "S"]:
+        for d in ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]:
             lbl = QLabel(d)
             lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
             lbl.setFixedWidth(26)
