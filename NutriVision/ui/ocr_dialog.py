@@ -11,6 +11,8 @@ from PyQt6.QtGui import QPixmap, QDragEnterEvent, QDropEvent
 class ImageDropZone(QLabel):
     """A QLabel that accepts drag-and-drop image files and click-to-browse."""
 
+    SUPPORTED_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.bmp', '.webp')
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.image_path: str | None = None
@@ -21,7 +23,8 @@ class ImageDropZone(QLabel):
         self._set_placeholder()
 
     def _set_placeholder(self):
-        self.setText("📷  Drop image here or click to browse\n(.jpg  .png  .bmp  .webp)")
+        exts = "  ".join(e.lstrip('.') for e in self.SUPPORTED_EXTENSIONS)
+        self.setText(f"📷  Drop image here or click to browse\n({exts})")
         self.setStyleSheet(
             "QLabel {"
             "  border: 2px dashed #DADCE0;"
@@ -51,10 +54,8 @@ class ImageDropZone(QLabel):
             )
 
     def mousePressEvent(self, event):
-        path, _ = QFileDialog.getOpenFileName(
-            self, "Select Image", "",
-            "Images (*.jpg *.jpeg *.png *.bmp *.webp)"
-        )
+        ext_filter = "Images (" + " ".join(f"*{e}" for e in self.SUPPORTED_EXTENSIONS) + ")"
+        path, _ = QFileDialog.getOpenFileName(self, "Select Image", "", ext_filter)
         if path:
             self._load_image(path)
         super().mousePressEvent(event)
@@ -63,7 +64,7 @@ class ImageDropZone(QLabel):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 suffix = Path(url.toLocalFile()).suffix.lower()
-                if suffix in ('.jpg', '.jpeg', '.png', '.bmp', '.webp'):
+                if suffix in self.SUPPORTED_EXTENSIONS:
                     event.acceptProposedAction()
                     return
         event.ignore()
@@ -72,7 +73,7 @@ class ImageDropZone(QLabel):
         for url in event.mimeData().urls():
             file_path = url.toLocalFile()
             suffix = Path(file_path).suffix.lower()
-            if suffix in ('.jpg', '.jpeg', '.png', '.bmp', '.webp'):
+            if suffix in self.SUPPORTED_EXTENSIONS:
                 self._load_image(file_path)
                 event.acceptProposedAction()
                 return

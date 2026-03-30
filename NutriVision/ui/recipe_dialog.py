@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QListWidget, QListWidgetItem, QLineEdit, QDoubleSpinBox,
-    QFrame, QSplitter, QSizePolicy,
+    QFrame, QSplitter, QSizePolicy, QWidget,
 )
 from PyQt6.QtCore import Qt
 
