@@ -1,0 +1,200 @@
+QMainWindow, QDialog {
+    background-color: #F8F9FA;
+}
+QWidget#card {
+    background-color: #FFFFFF;
+    border-radius: 18px;
+    border: 1px solid #E8EAED;
+}
+QPushButton {
+    background-color: #4285F4;
+    color: white;
+    border-radius: 18px;
+    padding: 8px 20px;
+    font-family: "Segoe UI", "PingFang SC", sans-serif;
+    font-size: 14px;
+    border: none;
+}
+QPushButton:hover {
+    background-color: #3367D6;
+}
+QPushButton:pressed {
+    background-color: #2A56C6;
+}
+QPushButton#secondary {
+    background-color: #FFFFFF;
+    color: #4285F4;
+    border: 1.5px solid #4285F4;
+}
+QPushButton#secondary:hover {
+    background-color: #E8F0FE;
+}
+QPushButton#nav_btn {
+    background-color: transparent;
+    color: #5F6368;
+    border-radius: 12px;
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 14px;
+    border: none;
+}
+QPushButton#nav_btn:hover {
+    background-color: #E8F0FE;
+    color: #4285F4;
+}
+QPushButton#nav_btn:checked {
+    background-color: #E8F0FE;
+    color: #4285F4;
+    font-weight: bold;
+}
+QPushButton#icon_btn {
+    background-color: transparent;
+    color: #5F6368;
+    border: none;
+    border-radius: 14px;
+    padding: 4px 8px;
+    font-size: 16px;
+    min-width: 28px;
+    min-height: 28px;
+}
+QPushButton#icon_btn:hover {
+    background-color: #F1F3F4;
+    color: #202124;
+}
+QPushButton#add_btn {
+    background-color: #4285F4;
+    color: white;
+    border-radius: 14px;
+    padding: 4px 10px;
+    font-size: 18px;
+    min-width: 28px;
+    min-height: 28px;
+    border: none;
+}
+QPushButton#add_btn:hover {
+    background-color: #3367D6;
+}
+QPushButton#delete_btn {
+    background-color: transparent;
+    color: #EA4335;
+    border: none;
+    border-radius: 12px;
+    padding: 2px 6px;
+    font-size: 14px;
+}
+QPushButton#delete_btn:hover {
+    background-color: #FCE8E6;
+}
+QListWidget, QTableWidget {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #E8EAED;
+    padding: 4px;
+    outline: none;
+}
+QListWidget::item {
+    border-radius: 8px;
+    padding: 6px 8px;
+    margin: 2px 0px;
+}
+QListWidget::item:selected {
+    background-color: #E8F0FE;
+    color: #4285F4;
+}
+QListWidget::item:hover {
+    background-color: #F1F3F4;
+}
+QLineEdit, QDoubleSpinBox, QTextEdit {
+    background-color: #FFFFFF;
+    border: 1.5px solid #E8EAED;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #202124;
+}
+QLineEdit:focus, QDoubleSpinBox:focus, QTextEdit:focus {
+    border-color: #4285F4;
+    outline: none;
+}
+QLabel {
+    color: #202124;
+    font-family: "Segoe UI", "PingFang SC", sans-serif;
+}
+QLabel#title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #202124;
+    letter-spacing: 1px;
+}
+QLabel#subtitle {
+    font-size: 16px;
+    color: #5F6368;
+}
+QLabel#card_title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #202124;
+}
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+QScrollBar:vertical {
+    background: #F8F9FA;
+    width: 8px;
+    border-radius: 4px;
+}
+QScrollBar::handle:vertical {
+    background: #DADCE0;
+    border-radius: 4px;
+    min-height: 30px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #BDC1C6;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+QScrollBar:horizontal {
+    background: #F8F9FA;
+    height: 8px;
+    border-radius: 4px;
+}
+QScrollBar::handle:horizontal {
+    background: #DADCE0;
+    border-radius: 4px;
+    min-width: 30px;
+}
+QComboBox {
+    background-color: #FFFFFF;
+    border: 1.5px solid #E8EAED;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #202124;
+}
+QComboBox:focus {
+    border-color: #4285F4;
+}
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+QStatusBar {
+    background-color: #FFFFFF;
+    color: #5F6368;
+    font-size: 12px;
+    border-top: 1px solid #E8EAED;
+}
+QSplitter::handle {
+    background-color: #E8EAED;
+    width: 1px;
+}
+QFrame#sidebar {
+    background-color: #FFFFFF;
+    border-right: 1px solid #E8EAED;
+}
+QFrame#topbar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E8EAED;
+}
