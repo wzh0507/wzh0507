@@ -2,6 +2,7 @@ import sys
 import matplotlib
 matplotlib.use('QtAgg')
 
+from enum import IntEnum
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -135,12 +136,12 @@ class AnalyticsView(QWidget):
 
 # ── MainWindow ────────────────────────────────────────────────────────────────
 
-# Page indices
-PAGE_YEAR = 0
-PAGE_MONTH = 1
-PAGE_DAY = 2
-PAGE_RECIPES = 3
-PAGE_ANALYTICS = 4
+class Page(IntEnum):
+    YEAR = 0
+    MONTH = 1
+    DAY = 2
+    RECIPES = 3
+    ANALYTICS = 4
 
 
 class MainWindow(QMainWindow):
@@ -154,7 +155,7 @@ class MainWindow(QMainWindow):
         self._history: list[int] = []  # page index history for back navigation
         self._build_ui()
         self._connect_signals()
-        self.switch_view(PAGE_YEAR)
+        self.switch_view(Page.YEAR)
 
     # ── UI construction ──────────────────────────────────────────────────────
 
@@ -181,9 +182,9 @@ class MainWindow(QMainWindow):
         sb_layout.addSpacing(8)
 
         nav_items = [
-            ("📅  Calendar", PAGE_YEAR),
-            ("🍽  Recipes", PAGE_RECIPES),
-            ("📊  Analytics", PAGE_ANALYTICS),
+            ("📅  Calendar", Page.YEAR),
+            ("🍽  Recipes", Page.RECIPES),
+            ("📊  Analytics", Page.ANALYTICS),
         ]
         self._nav_buttons: list[QPushButton] = []
         for label, idx in nav_items:
@@ -273,11 +274,11 @@ class MainWindow(QMainWindow):
             self._history.append(self.stack.currentIndex())
 
         # Refresh the target view
-        if index == PAGE_YEAR:
+        if index == Page.YEAR:
             self.year_view.refresh()
-        elif index == PAGE_RECIPES:
+        elif index == Page.RECIPES:
             self.recipes_view.refresh()
-        elif index == PAGE_ANALYTICS:
+        elif index == Page.ANALYTICS:
             self.analytics_view.refresh()
 
         self._animate_switch(index)
@@ -296,17 +297,17 @@ class MainWindow(QMainWindow):
         anim.start()
 
     def _update_nav_buttons(self, index: int):
-        page_to_nav = {PAGE_YEAR: 0, PAGE_RECIPES: 1, PAGE_ANALYTICS: 2}
+        page_to_nav = {Page.YEAR: 0, Page.RECIPES: 1, Page.ANALYTICS: 2}
         for i, btn in enumerate(self._nav_buttons):
             btn.setChecked(page_to_nav.get(index, -1) == i)
 
     def show_month_view(self, year: int, month: int):
         self.month_view.set_month(year, month)
-        self.switch_view(PAGE_MONTH)
+        self.switch_view(Page.MONTH)
 
     def show_day_view(self, date_str: str):
         self.day_view.set_date(date_str)
-        self.switch_view(PAGE_DAY)
+        self.switch_view(Page.DAY)
 
     def go_back(self):
         if self._history:
@@ -314,7 +315,7 @@ class MainWindow(QMainWindow):
             self._animate_switch(prev)
             self._update_nav_buttons(prev)
         else:
-            self.switch_view(PAGE_YEAR)
+            self.switch_view(Page.YEAR)
 
     def _open_ocr(self):
         dlg = OCRDialog(self.db, parent=self)

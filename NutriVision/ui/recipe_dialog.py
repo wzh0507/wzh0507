@@ -33,8 +33,8 @@ class RecipeDialog(QDialog):
         splitter.setChildrenCollapsible(False)
 
         # Left: search + list
-        left = QWidget()
-        left_layout = QVBoxLayout(left)
+        left_widget = QWidget()
+        left_layout = QVBoxLayout(left_widget)
         left_layout.setContentsMargins(0, 0, 0, 0)
         left_layout.setSpacing(8)
 
@@ -47,7 +47,7 @@ class RecipeDialog(QDialog):
         self.recipe_list.currentItemChanged.connect(self._on_selection_changed)
         left_layout.addWidget(self.recipe_list)
 
-        splitter.addWidget(left)
+        splitter.addWidget(left_widget)
 
         # Right: details panel
         right = QFrame()
